@@ -2,35 +2,41 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Sign_up = () => {
-    const [formData, setFormData] = useState({
+    const [user, setUser] = useState({
         name: "",
         email: "",
-        password: ""
-    });
+        password: "",
+        cpassword: ""
+    })
 
     const handleInputChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
-    };
+        setUser({ ...user, [e.target.name]: e.target.value })
+    }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const { name, email, password } = user;
+
+        const res = await fetch("/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            }),
+        });
 
         try {
-            const response = await fetch("/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name, email, password
-                })
-            });
+            const data = await res.json();
 
-            const data = await response.json();
-            console.log(data);
+            console.log(data)
 
             if (response.ok) {
-                window.location.href = '/login';
+                alert("Happy");
             }
         } catch (error) {
             console.error(error);
@@ -42,15 +48,15 @@ const Sign_up = () => {
             <form onSubmit={handleSubmit}>
                 <label>
                     Name:
-                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
+                    <input type="text" name="name" value={user.name} onChange={handleInputChange} />
                 </label>
                 <label>
                     Email:
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
+                    <input type="email" name="email" value={user.email} onChange={handleInputChange} />
                 </label>
                 <label>
                     Password:
-                    <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
+                    <input type="password" name="password" value={user.password} onChange={handleInputChange} />
                 </label>
                 <button type="submit">Sign up</button>
             </form>

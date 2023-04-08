@@ -1,12 +1,16 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
+const cors = require('cors');
 
 
 //MongoDb Connection
-require("./db/Connection.js")
+const connection = require("./db/Connection.js")
+connection();
 
-// store data in json
+// middlewares
 app.use(express.json())
+app.use(cors());
 
 // router file linked 
 app.use(require("./Routes/UserRoutes"))

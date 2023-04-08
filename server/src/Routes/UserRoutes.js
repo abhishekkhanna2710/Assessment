@@ -1,24 +1,60 @@
 const express = require("express");
 const router = new express.Router();
 const bcrypt = require('bcrypt');
-const User = require("../models/UserSchema.js");
 
+
+const User = require("../models/UserSchema.js")
+
+
+router.get("/", (req, res) => {
+    res.send("Hi my project project reloading 2.0.....");
+})
+
+/****************   Old registeration of thapa ****************/
 
 router.post("/signup", async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-        const user = new User({ name, email, password });
-        await user.save();
-        res.status(201).send(user);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("Error saving user");
-    }
-});
 
+    const { name, email, password, cpassword } = req.body;
+
+    if (!name || !email || !password || !cpassword) {
+        return res.status(422).json({ error: "Plz filled credentials properly" })
+    }
+
+    try {
+
+        const userExist = await User.findOne({ email: email })
+
+        if (userExist) {
+            return res.status(422).json({ error: "Email already Exists" })
+        } else if (password != cpassword) {
+            return res.status(423).json({ error: "Password is not matching" })
+
+        } else {
+            const user = new User({ name, email, password, cpassword })
+            await user.save();
+            return res.status(201).json({ message: "User Registered Sucessfully" })
+
+        }
+
+
+    } catch (error) {
+        console.log(error)
+    }
+
+})
+
+
+
+
+
+
+
+
+// **********Login Route**************
 
 router.post("/login", async (req, res) => {
-
+    // console.log(req.body)
+    // res.json({message: "awesome"})
 
     try {
         let token;
@@ -53,6 +89,8 @@ router.post("/login", async (req, res) => {
             res.status(400).res.json({ message: "Invalid Credentials" });
 
         }
+
+
 
     } catch (error) {
         console.log(error)
