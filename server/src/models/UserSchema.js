@@ -5,7 +5,7 @@ const passwordComplexity = require("joi-password-complexity")
 
 
 const userSchema = new mongoose.Schema({
-    name: {
+    userName: {
         type: String,
         required: true
     },
@@ -26,5 +26,14 @@ userSchema.methods.generateAuthToken = function () {
 
 const User = mongoose.model("user", userSchema);
 
+const validate = (data) => {
+    const schema = joi.object({
+        userName: joi.string().required().label("User Name"),
+        email: joi.string().email().required().label("Email"),
+        password: passwordComplexity().required().label('Password')
+    })
+    return schema.validate(data)
+}
 
-module.exports = User;
+
+module.exports = { User, validate };

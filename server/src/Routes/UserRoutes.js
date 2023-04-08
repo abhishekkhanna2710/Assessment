@@ -1,99 +1,31 @@
-const express = require("express");
-const router = new express.Router();
+const router = require("express").Router();
 const bcrypt = require('bcrypt');
 
-
-const User = require("../models/UserSchema.js")
+const { User, validate } = require("../models/UserSchema");
 
 
 router.get("/", (req, res) => {
     res.send("Hi my project project reloading 2.0.....");
 })
 
-/****************   Old registeration of thapa ****************/
-
-router.post("/signup", async (req, res) => {
-
-    const { name, email, password, cpassword } = req.body;
-
-    if (!name || !email || !password || !cpassword) {
-        return res.status(422).json({ error: "Plz filled credentials properly" })
-    }
-
+router.post("/", async (req, res) => {
     try {
-
-        const userExist = await User.findOne({ email: email })
-
-        if (userExist) {
-            return res.status(422).json({ error: "Email already Exists" })
-        } else if (password != cpassword) {
-            return res.status(423).json({ error: "Password is not matching" })
-
-        } else {
-            const user = new User({ name, email, password, cpassword })
-            await user.save();
-            return res.status(201).json({ message: "User Registered Sucessfully" })
-
+        const { error } = validate(req.body);
+        if (error) {
+            return res.status(400).send({ message: error.details[0].message })
+        }
+        const user = await User.findOne({ email: req.body.email })
+        if (user) {
+            return res.status(409).send({ message: "User with given Email already Exists" })
         }
 
+        const salt = await bcrypt.genSalt(Number(process.env.SALT))
+        const hashpassword = await bcrypt.hash(req.body.password, salt);
 
+        await new User({ ...req.body, password: hashpassword }).save();
+        res.status(201).send({ message: "User Created Successfully" })
     } catch (error) {
-        console.log(error)
-    }
-
-})
-
-
-
-
-
-
-
-
-// **********Login Route**************
-
-router.post("/login", async (req, res) => {
-    // console.log(req.body)
-    // res.json({message: "awesome"})
-
-    try {
-        let token;
-        const { email, password } = req.body
-
-        if (!email || !password) {
-            return res.status(400).json({ error: "Please fill the Details" })
-        }
-
-        const userLogin = await User.findOne({ email: email });
-        if (!userLogin) {
-            return res.status(402).json({ error: "User Not found" })
-        }
-
-        console.log(userLogin)
-
-        if (userLogin) {
-            const isMatch = await bcrypt.compare(password, userLogin.password)
-
-
-            token = await userLogin.generateAuthToken();
-            console.log(token)
-
-            if (!isMatch) {
-                res.status(400).res.json({ message: "Invalid Credentials" });
-
-            } else {
-                res.json({ message: "User Signin Successfully" });
-            }
-        }
-        else {
-            res.status(400).res.json({ message: "Invalid Credentials" });
-
-        }
-
-
-
-    } catch (error) {
-        console.log(error)
+        res.status(500).send({ message: "Internal Server Error" })
     }
 })
 

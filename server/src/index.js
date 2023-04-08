@@ -2,10 +2,12 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const cors = require('cors');
+const connection = require("./db/Connection.js")
+const userRoutes = require("./Routes/UserRoutes");
+const authRoutes = require("./Routes/Auth");
 
 
 //MongoDb Connection
-const connection = require("./db/Connection.js")
 connection();
 
 // middlewares
@@ -13,7 +15,8 @@ app.use(express.json())
 app.use(cors());
 
 // router file linked 
-app.use(require("./Routes/UserRoutes"))
+app.use("/api/users", userRoutes)
+app.use("/api/auth", authRoutes)
 
 
 
