@@ -8,9 +8,8 @@ const Sign_up = () => {
         password: ""
     });
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
     };
 
     const handleSubmit = async (event) => {
@@ -22,11 +21,13 @@ const Sign_up = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    name, email, password
+                })
             });
 
-            const json = await response.json();
-            console.log(json);
+            const data = await response.json();
+            console.log(data);
 
             if (response.ok) {
                 window.location.href = '/login';

@@ -1,8 +1,17 @@
 const express = require("express");
 const app = express();
+
+
+//MongoDb Connection
 require("./db/Connection.js")
 
+// store data in json
 app.use(express.json())
+
+// router file linked 
+app.use(require("./Routes/UserRoutes"))
+
+
 
 const port = process.env.PORT || 5000;
 
