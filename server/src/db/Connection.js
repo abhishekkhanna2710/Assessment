@@ -18,7 +18,7 @@ module.exports = () => {
         useUnifiedTopology: "true"
     }
     try {
-        mongoose.connect("mongodb+srv://abhikhanna2710:newAssessment@cluster0.nabqelz.mongodb.net/?retryWrites=true&w=majority", connectionParams)
+        mongoose.connect(process.env.MONGODB_URL, connectionParams)
         console.log("Connected Database");
     } catch (error) {
         console.log(error.message)

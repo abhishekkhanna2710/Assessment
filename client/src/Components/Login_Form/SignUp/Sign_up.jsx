@@ -22,6 +22,7 @@ const Sign_up = () => {
 
         try {
             const res = await fetch("http://localhost:5000/api/users", {
+            // const res = await fetch("https://weak-jade-harp-seal-wrap.cyclic.app/api/users", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
