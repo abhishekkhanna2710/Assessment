@@ -13,7 +13,7 @@ The deploy link for users https://assessmentask.netlify.app/
    <li>Pagination</li>
  </ul>
   
-  <ins>The Experience of Assement :</ins> <br/><br/>
+  <ins>The Experience of Project :</ins> <br/><br/>
 Products Page
 
 ![screencapture-127-0-0-1-5173-products-2023-04-09-18_06_23](https://user-images.githubusercontent.com/113687128/230773098-bbb2f618-bfc2-4781-a8dd-a27cf28b0b3d.png)
