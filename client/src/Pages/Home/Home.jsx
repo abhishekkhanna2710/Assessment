@@ -11,7 +11,7 @@ const Home = () => {
 
     useEffect(() => {
         async function fetchProducts() {
-            const response = await fetch('http://localhost:5000/api/products');
+            const response = await fetch('https://deeployassements.onrender.com/api/products');
             // const response = await fetch('https://assessment-f5mu.onrender.com/api/products');
             const data = await response.json();
             setProducts(data);

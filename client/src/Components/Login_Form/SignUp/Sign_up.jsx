@@ -21,8 +21,8 @@ const Sign_up = () => {
         const { name, email, password } = user;
 
         try {
-            const res = await fetch("http://localhost:5000/api/users", {
-            // const res = await fetch("https://weak-jade-harp-seal-wrap.cyclic.app/api/users", {
+            const res = await fetch("https://deeployassements.onrender.com/api/users", {
+                // const res = await fetch("https://weak-jade-harp-seal-wrap.cyclic.app/api/users", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -37,13 +37,16 @@ const Sign_up = () => {
             const data = await res.json();
 
 
-            if (!data.success) {
+
+            if (data.message === "User Created Successfully") {
+                console.log(data.message);
+                console.log("Deny")
+                navigate("/login")
+                // window.location.href = "/login";
+
+            } else if (!data.success) {
                 setError(data.message);
                 console.log(data);
-
-            } else if (data.success) {
-                console.log(data.message);
-                window.location.href = "/login";
 
             }
 
