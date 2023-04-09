@@ -26,4 +26,4 @@ Login page
 ![Screenshot 2023-04-09 180558](https://user-images.githubusercontent.com/113687128/230773200-b8c31c99-cf50-4e7a-a873-38d9ec5a0521.png)
 
 
-#Thankd for this Wonderful task
+# Thanks for this Wonderful task
