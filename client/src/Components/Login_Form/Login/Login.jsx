@@ -6,7 +6,8 @@ const Login = () => {
         email: "",
         password: ""
     })
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
+    const [loggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -50,6 +51,7 @@ const Login = () => {
                 setError(data.message);
                 console.log(data);
             } else {
+                setLoggedIn(true);
                 console.log(data.message);
                 window.location.href = "/home"
                 // navigate = "/home"
@@ -81,6 +83,14 @@ const Login = () => {
                 >
                     Back to Registration
                 </NavLink>
+                <br />
+                {/* {loggedIn && ( */}
+                <NavLink
+                    to="/home"
+                >
+                    Go to Home page
+                </NavLink>
+                {/* )} */}
             </form>
         </div>
     );
