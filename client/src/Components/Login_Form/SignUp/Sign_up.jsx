@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import signStyle from "./Sign.module.css"
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios"
+
 
 const Sign_up = () => {
     const [user, setUser] = useState({

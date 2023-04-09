@@ -32,15 +32,14 @@ router.post("/", async (req, res) => {
 // Getting all the car data
 
 router.get("/", async (req, res) => {
-    res.send("Products data");
-    // try {
+    try {
 
-    //     const cars = await Cars.find();
-    //     return res.status(200).send(cars);
+        const products = await Products.find();
+        return res.status(200).send(products);
 
-    // } catch (error) {
-    //     console.log(error)
-    // }
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 module.exports = router;

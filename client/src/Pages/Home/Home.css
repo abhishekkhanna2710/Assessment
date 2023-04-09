@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ProductsMain {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.ProductsMain img {
+    width: 100%;
+}
+
+.imageClass {
+    width: 200px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    border-radius: 4px;
+
+}
+
+.card-title {
+    text-align: center;
+    color: rgb(218, 40, 40);
+}
+
+.card-text {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+}
+
+.displays {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 3px 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.price {
+    background-color: rgb(227, 113, 20);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.Sorting_Algorithm {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-primary {
+    background-color: rgb(241, 113, 39);
+    color: white;
+    border: none;
+    padding: 3px 10px;
+    margin-bottom: 20px;
+}
