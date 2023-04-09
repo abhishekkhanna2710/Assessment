@@ -74,7 +74,7 @@ const Login = () => {
                 <button type="submit">Login</button>
             </form>
             <NavLink className='navs'
-                to="/signup"
+                to="/"
             >
                 Back to Registration
             </NavLink>
