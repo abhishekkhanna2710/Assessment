@@ -40,7 +40,7 @@ const Sign_up = () => {
 
             if (data.message === "User Created Successfully") {
                 console.log(data.message);
-                console.log("Deny")
+                alert("User Created Successfully")
                 navigate("/login")
                 // window.location.href = "/login";
 

@@ -34,14 +34,16 @@ const Login = () => {
 
             const data = await res.json();
 
-            if (!data.success) {
+
+            if (data.message === "Logged in Successfully") {
+                alert("Looged in Successfully")
+                console.log(data.message);
+                navigate("/products")
+
+            } else if (!data.success) {
                 setError(data.message);
                 console.log(data);
-            } else {
-                setLoggedIn(true);
-                console.log(data.message);
-                window.location.href = "/home"
-                // navigate = "/home"
+
             }
         } catch (error) {
             console.error(error);
@@ -71,13 +73,7 @@ const Login = () => {
                     Back to Registration
                 </NavLink>
                 <br />
-                {/* {loggedIn && ( */}
-                <NavLink
-                    to="/products"
-                >
-                    Go to Home page
-                </NavLink>
-                {/* )} */}
+
             </form>
         </div>
     );

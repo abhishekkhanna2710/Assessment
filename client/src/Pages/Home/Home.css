@@ -8,12 +8,31 @@ body {
     gap: 10px;
 }
 
+@media only screen and (max-width: 740px) and (min-width: 360px) {
+    .ProductsMain {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+
+}
+
+@media only screen and (max-width: 1040px) and (min-width:740px) {
+    .ProductsMain {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+}
+
 .ProductsMain img {
     width: 100%;
 }
 
 .imageClass {
     width: 200px;
+    margin: auto;
 }
 
 .container {
@@ -88,6 +107,6 @@ body {
     font-size: 14px;
 }
 
-.pagination button:hover{
+.pagination button:hover {
     background-color: rgb(13, 34, 154);
 }
