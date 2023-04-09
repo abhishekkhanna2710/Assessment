@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import LoginStyle from "./Login.module.css"
 const Login = () => {
     const [user, setUser] = useState({
         email: "",
@@ -49,9 +50,9 @@ const Login = () => {
                 setError(data.message);
                 console.log(data);
             } else {
-                window.alert("Registration Successful");
-                console.log("Registration Successful");
                 console.log(data.message);
+                window.location.href = "/home"
+                // navigate = "/home"
             }
         } catch (error) {
             console.error(error);
@@ -60,25 +61,28 @@ const Login = () => {
 
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
+        <div className={LoginStyle.login}>
+            <h1>Enter Your Credentials</h1>
+            <form className={LoginStyle.loginForm} onSubmit={handleSubmit}>
                 <label>
                     Email:
                     <input type="email" name="email" value={user.email} onChange={handleInputChange} />
                 </label>
+                <br />
                 <label>
                     Password:
                     <input type="password" name="password" value={user.password} onChange={handleInputChange} />
                 </label>
-                {error && <div>{error}</div>}
-                <button type="submit">Login</button>
+                <br />
+                {error && <div className={LoginStyle.error}>{error}</div>}
+                <button className={LoginStyle.loginButton} type="submit">Login</button> <br />
+                <NavLink className={LoginStyle.navs}
+                    to="/"
+                >
+                    Back to Registration
+                </NavLink>
             </form>
-            <NavLink className='navs'
-                to="/"
-            >
-                Back to Registration
-            </NavLink>
-        </>
+        </div>
     );
 };
 
