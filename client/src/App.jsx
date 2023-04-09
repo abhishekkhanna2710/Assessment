@@ -6,19 +6,16 @@ import Home from "./Components/Home/Home";
 
 
 function App() {
-
+  const user = localStorage.getItem("token")
   return (
     <div className="App">
 
       <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <Routes>
-        <Route path="/Login" element={<Login />} />
-      </Routes>
+        <Route path="/" exact element={<Home />} />
 
-      <Routes>
-        <Route path="/signup" element={<Sign_up />} />
+        <Route path="/login" exact element={<Login />} />
+
+        <Route path="/signup" exact element={<Sign_up />} />
       </Routes>
     </div>
   )
