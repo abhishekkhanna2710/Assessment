@@ -1,6 +1,7 @@
 
 # Build a Full MERN Stack Assessment App
 
+The deploy link for users https://assessmentask.netlify.app/
 
  <ins>The Features Developed: </ins>
 
