@@ -1,5 +1,5 @@
 
-# Build a Full Stack MERN Assessment App
+# Build a Full MERN Stack Assessment App
 
 
  <ins>The Features Developed: </ins>
