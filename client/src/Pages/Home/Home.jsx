@@ -41,12 +41,12 @@ const Home = () => {
 
     return (
         <div className="container">
-            <h2 style={{ textAlign: "center" }}>Products Section</h2>
+            <h1 style={{ textAlign: "center" }}>Products Section</h1>
             <div className='Sorting_Algorithm'>
 
                 <div className="Searching_Name">
                     <div className="input-group-append">
-                        <input type="text" placeholder="Search products by name" onChange={(e) => setFilter(e.target.value)} />
+                        <input type="text" placeholder="Search products" onChange={(e) => setFilter(e.target.value)} />
                         <button className="btn btn-primary" type="button">Search</button>
                     </div>
                 </div>
