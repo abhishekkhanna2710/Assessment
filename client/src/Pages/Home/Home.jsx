@@ -6,7 +6,8 @@ const Home = () => {
     const [products, setProducts] = useState([]);
     const [filter, setFilter] = useState('');
     const [sortOrder, setSortOrder] = useState('');
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage, setProductsPerPage] = useState(8);
 
     useEffect(() => {
         async function fetchProducts() {
@@ -29,6 +30,14 @@ const Home = () => {
         }
     });
 
+    //  current products
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = sortedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    // pagination section
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
         <div className="container">
             <h2 style={{ textAlign: "center" }}>Products Section</h2>
@@ -50,7 +59,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="ProductsMain">
-                {sortedProducts.map(product => (
+                {currentProducts.map(product => (
 
                     <div className="card">
                         <div className='imageClass'>
@@ -68,8 +77,23 @@ const Home = () => {
 
                 ))}
             </div>
+            <div className="pagination">
+                {sortedProducts.length > productsPerPage &&
+                    <nav>
+                        <ul className="pagination">
+                            {Array(Math.ceil(sortedProducts.length / productsPerPage)).fill().map((_, i) => (
+                                <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                                    <button onClick={() => paginate(i + 1)} className="page-link">
+                                        {i + 1}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                }
+            </div>
         </div>
     )
 }
 
-export default Home
+export default Home;

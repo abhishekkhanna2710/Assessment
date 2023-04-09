@@ -69,3 +69,25 @@ body {
     padding: 3px 10px;
     margin-bottom: 20px;
 }
+
+.pagination ul li {
+    list-style: none;
+}
+
+.pagination ul {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination button {
+    margin: 20px 4px;
+    background-color: rgb(169, 7, 7);
+    color: white;
+    border: none;
+    padding: 3px 8px;
+    font-size: 14px;
+}
+
+.pagination button:hover{
+    background-color: rgb(13, 34, 154);
+}

@@ -14,20 +14,6 @@ const Login = () => {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const url = "http://localhost:5000/api/users";
-    //         const { data: res } = await axios.post(url, data);
-    //         console.log(res.message)
-    //         navigate("/login")
-    //     } catch (error) {
-    //         if (error.response && error.response.status >= 400 && error.response <= 500) {
-    //             setError(error.response.data.message)
-    //             console.log(error)
-    //         }
-    //     }
-    // };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -86,7 +72,7 @@ const Login = () => {
                 <br />
                 {/* {loggedIn && ( */}
                 <NavLink
-                    to="/home"
+                    to="/products"
                 >
                     Go to Home page
                 </NavLink>
